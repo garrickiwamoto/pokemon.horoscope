@@ -1,0 +1,612 @@
+/* ─── Reset & Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #1a1a2e;
+  --bg-light: #16213e;
+  --border: #e8e8e8;
+  --text: #f0f0f0;
+  --text-dim: #a0a0b0;
+  --accent: #ffd700;
+  --accent-dark: #c8a800;
+  --white: #ffffff;
+  --black: #000000;
+  --pixel-shadow: 4px 4px 0px #000;
+  --pixel-border: 3px solid #000;
+  --font: 'Press Start 2P', monospace;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  background-color: var(--bg);
+  color: var(--text);
+  image-rendering: pixelated;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Screen Container ──────────────────────────────────────────────────────── */
+.screen-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px 16px 40px;
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+  gap: 20px;
+}
+
+/* ─── Background pixel grid ─────────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 16px 16px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.screen-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Professor Oak ─────────────────────────────────────────────────────────── */
+.oak-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.oak-scene.small {
+  padding-top: 8px;
+}
+
+.oak-sprite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.oak-pixel-art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.oak-emoji {
+  font-size: 80px;
+  display: block;
+  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.4));
+  animation: float 3s ease-in-out infinite;
+}
+
+.oak-sprite.excited .oak-emoji {
+  animation: bounce 0.5s ease-in-out infinite;
+}
+
+.oak-name-tag {
+  font-family: var(--font);
+  font-size: 8px;
+  color: var(--accent);
+  text-shadow: 1px 1px 0 #000;
+  letter-spacing: 1px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-12px) scale(1.05); }
+}
+
+/* ─── Dialog Box ────────────────────────────────────────────────────────────── */
+.dialog-box {
+  width: 100%;
+  background: var(--white);
+  border: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+  padding: 16px;
+  position: relative;
+}
+
+.dialog-box::before {
+  content: '';
+  position: absolute;
+  top: 3px; right: 3px; bottom: -3px; left: -3px;
+  border: 2px solid #000;
+  pointer-events: none;
+}
+
+.dialog-speaker {
+  font-family: var(--font);
+  font-size: 8px;
+  color: var(--black);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.dialog-text {
+  font-family: var(--font);
+  font-size: 9px;
+  color: var(--black);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  min-height: 60px;
+}
+
+.dialog-btn {
+  font-family: var(--font);
+  font-size: 9px;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  display: block;
+  margin-left: auto;
+  transition: transform 0.1s;
+}
+
+.dialog-btn:hover {
+  background: #333;
+}
+
+.dialog-btn:active {
+  transform: translate(2px, 2px);
+}
+
+/* ─── Quiz ──────────────────────────────────────────────────────────────────── */
+.quiz-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-text {
+  font-size: 8px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 12px;
+  background: #333;
+  border: 2px solid #000;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.quiz-box {
+  width: 100%;
+  background: var(--bg-light);
+  border: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.quiz-question {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+.answer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.answer-btn {
+  font-family: var(--font);
+  font-size: 8px;
+  background: #0d1b2a;
+  color: var(--text-dim);
+  border: 2px solid #333;
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+  transition: border-color 0.1s, color 0.1s, background 0.1s;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.answer-btn:hover {
+  border-color: var(--accent);
+  color: var(--white);
+  background: #1a2a3a;
+}
+
+.answer-btn.selected {
+  border-color: var(--accent);
+  background: #1a2a3a;
+  color: var(--white);
+}
+
+.answer-cursor {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.quiz-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* ─── Pixel Button ──────────────────────────────────────────────────────────── */
+.pixel-btn {
+  font-family: var(--font);
+  font-size: 9px;
+  background: var(--accent);
+  color: var(--black);
+  border: 2px solid var(--black);
+  box-shadow: 3px 3px 0 #000;
+  padding: 12px 18px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: transform 0.1s, box-shadow 0.1s;
+  text-transform: uppercase;
+}
+
+.pixel-btn:hover {
+  background: var(--accent-dark);
+}
+
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #000;
+}
+
+.pixel-btn.disabled,
+.pixel-btn:disabled {
+  background: #555;
+  color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ─── Type Reveal ───────────────────────────────────────────────────────────── */
+.type-reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 16px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.reveal-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.reveal-tagline {
+  font-size: 9px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  font-style: italic;
+  max-width: 400px;
+}
+
+/* ─── Type Badge ────────────────────────────────────────────────────────────── */
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--type-color, #666);
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  padding: 10px 18px;
+  animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.type-badge.large {
+  padding: 18px 32px;
+  gap: 16px;
+}
+
+.type-emoji {
+  font-size: 24px;
+}
+
+.type-badge.large .type-emoji {
+  font-size: 48px;
+}
+
+.type-name {
+  font-family: var(--font);
+  font-size: 10px;
+  color: var(--black);
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
+}
+
+.type-badge.large .type-name {
+  font-size: 16px;
+}
+
+/* ─── Horoscope Screen ──────────────────────────────────────────────────────── */
+.horoscope-screen {
+  padding-bottom: 60px;
+}
+
+.horoscope-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+.horoscope-title {
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.horoscope-scroll {
+  width: 100%;
+  background: var(--bg-light);
+  border: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 380px;
+}
+
+.horoscope-text {
+  font-family: var(--font);
+  font-size: 8px;
+  line-height: 2;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.horoscope-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+  text-align: center;
+}
+
+.oak-prompt {
+  font-size: 8px;
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+
+.oak-cta-text {
+  font-size: 8px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  max-width: 380px;
+}
+
+.skip-link {
+  background: none;
+  border: none;
+  font-family: var(--font);
+  font-size: 7px;
+  color: var(--text-dim);
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px;
+}
+
+.skip-link:hover {
+  color: var(--text);
+}
+
+/* ─── Invite Form ───────────────────────────────────────────────────────────── */
+.invite-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.pixel-label {
+  font-size: 8px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.pixel-input {
+  font-family: var(--font);
+  font-size: 8px;
+  background: var(--bg-light);
+  color: var(--white);
+  border: 2px solid #444;
+  padding: 12px;
+  width: 100%;
+  letter-spacing: 0.5px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.pixel-input:focus {
+  border-color: var(--accent);
+}
+
+.pixel-input::placeholder {
+  color: #555;
+}
+
+.add-email-btn {
+  background: none;
+  border: 2px dashed #444;
+  font-family: var(--font);
+  font-size: 7px;
+  color: var(--text-dim);
+  padding: 10px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.add-email-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.error-text {
+  font-size: 7px;
+  color: #ff4444;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Inviter Badge (Friend Landing) ───────────────────────────────────────── */
+.inviter-badge {
+  font-size: 8px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.type-pill {
+  font-family: var(--font);
+  font-size: 8px;
+  padding: 6px 12px;
+  border: 2px solid #000;
+  color: #000;
+  font-weight: bold;
+}
+
+/* ─── Relationship Horoscope ────────────────────────────────────────────────── */
+.relationship-screen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: 16px;
+}
+
+.relationship-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.vs-text {
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.relationship-title {
+  font-size: 10px;
+  color: var(--accent);
+  text-align: center;
+  line-height: 1.6;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.relationship-emoji {
+  font-size: 32px;
+  text-align: center;
+}
+
+.relationship-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ─── Loading ───────────────────────────────────────────────────────────────── */
+.loading-text {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ─── Animations ────────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #111;
+}
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border: 1px solid #000;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ─── Mobile ────────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .oak-emoji { font-size: 60px; }
+  .type-badge.large { padding: 14px 22px; }
+  .type-badge.large .type-emoji { font-size: 36px; }
+  .type-badge.large .type-name { font-size: 12px; }
+  .horoscope-scroll { max-height: 280px; }
+  .quiz-question { font-size: 9px; }
+  .dialog-text { font-size: 8px; }
+}
