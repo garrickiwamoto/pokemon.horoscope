@@ -21,6 +21,8 @@ export default function Results() {
   const type = state?.type || 'fire'
   const inviterRef = state?.inviterRef || null
   const inviterType = state?.inviterType || null
+  const name = state?.name || null
+  const email = state?.email || null
   const horoscope = personalHoroscopes[type]
 
   const [phase, setPhase] = useState('oak') // 'oak' | 'reveal' | 'horoscope' | 'relationship'
@@ -101,7 +103,7 @@ export default function Results() {
               <p className="oak-cta-text">
                 Want to discover your compatibility horoscope with a friend?
               </p>
-              <PixelButton onClick={() => navigate('/invite', { state: { type } })}>
+              <PixelButton onClick={() => navigate('/invite', { state: { type, name, email } })}>
                 Invite a Friend ▶
               </PixelButton>
             </>

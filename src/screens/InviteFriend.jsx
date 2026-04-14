@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { saveUserResult, sendInviteEmail } from '../services/firebaseService'
 import PixelButton from '../components/PixelButton'
@@ -8,13 +8,21 @@ export default function InviteFriend() {
   const { state } = useLocation()
   const navigate = useNavigate()
   const type = state?.type || 'fire'
+  const email = state?.email || ''
+  const name = state?.name || ''
 
-  const [yourEmail, setYourEmail] = useState('')
   const [friendEmails, setFriendEmails] = useState(['', ''])
-  const [step, setStep] = useState('email') // 'email' | 'friends' | 'sent'
-  const [loading, setLoading] = useState(false)
+  const [step, setStep] = useState('friends') // 'friends' | 'sent'
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [userId, setUserId] = useState(null)
+
+  useEffect(() => {
+    saveUserResult({ email, name, type })
+      .then(id => setUserId(id))
+      .catch(() => setError('Something went wrong. Try again.'))
+      .finally(() => setLoading(false))
+  }, [])
 
   function addEmailField() {
     if (friendEmails.length < 5) {
@@ -26,24 +34,6 @@ export default function InviteFriend() {
     const updated = [...friendEmails]
     updated[index] = value
     setFriendEmails(updated)
-  }
-
-  async function handleSaveEmail() {
-    if (!yourEmail || !yourEmail.includes('@')) {
-      setError('Please enter a valid email.')
-      return
-    }
-    setError('')
-    setLoading(true)
-    try {
-      const id = await saveUserResult({ email: yourEmail, type })
-      setUserId(id)
-      setStep('friends')
-    } catch (e) {
-      setError('Something went wrong. Try again.')
-    } finally {
-      setLoading(false)
-    }
   }
 
   async function handleSendInvites() {
@@ -64,40 +54,12 @@ export default function InviteFriend() {
     }
   }
 
-  if (step === 'email') {
+  if (step === 'friends') {
     return (
       <div className="screen-container">
         <div className="oak-scene small">
           <OakSprite />
         </div>
-        <div className="dialog-box">
-          <p className="dialog-speaker">Prof. Oak</p>
-          <p className="dialog-text">
-            Before we send your friends their destiny... I'll need your email address.
-            For science. Definitely not because I'm lonely in this lab.
-          </p>
-        </div>
-        <div className="invite-form">
-          <label className="pixel-label">Your email:</label>
-          <input
-            className="pixel-input"
-            type="email"
-            placeholder="you@example.com"
-            value={yourEmail}
-            onChange={e => setYourEmail(e.target.value)}
-          />
-          {error && <p className="error-text">{error}</p>}
-          <PixelButton onClick={handleSaveEmail} disabled={loading}>
-            {loading ? 'Saving...' : 'Continue ▶'}
-          </PixelButton>
-        </div>
-      </div>
-    )
-  }
-
-  if (step === 'friends') {
-    return (
-      <div className="screen-container">
         <div className="dialog-box">
           <p className="dialog-speaker">Prof. Oak</p>
           <p className="dialog-text">
@@ -107,14 +69,14 @@ export default function InviteFriend() {
         </div>
         <div className="invite-form">
           <label className="pixel-label">Friend emails:</label>
-          {friendEmails.map((email, i) => (
+          {friendEmails.map((e, i) => (
             <input
               key={i}
               className="pixel-input"
               type="email"
               placeholder={`friend${i + 1}@example.com`}
-              value={email}
-              onChange={e => updateFriendEmail(i, e.target.value)}
+              value={e}
+              onChange={ev => updateFriendEmail(i, ev.target.value)}
             />
           ))}
           {friendEmails.length < 5 && (
@@ -124,7 +86,7 @@ export default function InviteFriend() {
           )}
           {error && <p className="error-text">{error}</p>}
           <PixelButton onClick={handleSendInvites} disabled={loading}>
-            {loading ? 'Sending...' : 'Send Invites ▶'}
+            {loading ? 'Saving...' : 'Send Invites ▶'}
           </PixelButton>
           <button className="skip-link" onClick={() => navigate('/')}>
             Skip for now

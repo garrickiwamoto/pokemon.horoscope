@@ -160,8 +160,8 @@ body::before {
 .dialog-btn {
   font-family: var(--font);
   font-size: 9px;
-  background: var(--black);
-  color: var(--white);
+  background: #FFCC00;
+  color: var(--black);
   border: none;
   padding: 10px 16px;
   cursor: pointer;
@@ -172,7 +172,7 @@ body::before {
 }
 
 .dialog-btn:hover {
-  background: #333;
+  background: #e6b800;
 }
 
 .dialog-btn:active {

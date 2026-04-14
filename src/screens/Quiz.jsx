@@ -8,6 +8,8 @@ export default function Quiz() {
   const { state } = useLocation()
   const inviterRef = state?.inviterRef || null
   const inviterType = state?.inviterType || null
+  const name = state?.name || null
+  const email = state?.email || null
   const [currentQ, setCurrentQ] = useState(0)
   const [selectedAnswers, setSelectedAnswers] = useState([])
   const [selected, setSelected] = useState(null)
@@ -25,7 +27,7 @@ export default function Quiz() {
 
     if (isLast) {
       const type = calculateType(newAnswers)
-      navigate('/results', { state: { type, inviterRef, inviterType } })
+      navigate('/results', { state: { type, inviterRef, inviterType, name, email } })
     } else {
       setSelectedAnswers(newAnswers)
       setCurrentQ(q => q + 1)
