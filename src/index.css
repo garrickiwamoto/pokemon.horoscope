@@ -91,14 +91,15 @@ body::before {
   gap: 6px;
 }
 
-.oak-emoji {
-  font-size: 80px;
+.oak-image {
+  width: 120px;
+  height: auto;
   display: block;
   filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.4));
   animation: float 3s ease-in-out infinite;
 }
 
-.oak-sprite.excited .oak-emoji {
+.oak-image.excited {
   animation: bounce 0.5s ease-in-out infinite;
 }
 
@@ -602,7 +603,7 @@ body::before {
 
 /* ─── Mobile ────────────────────────────────────────────────────────────────── */
 @media (max-width: 480px) {
-  .oak-emoji { font-size: 60px; }
+  .oak-image { width: 80px; }
   .type-badge.large { padding: 14px 22px; }
   .type-badge.large .type-emoji { font-size: 36px; }
   .type-badge.large .type-name { font-size: 12px; }
