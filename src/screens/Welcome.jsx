@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { saveUserInfo } from '../services/firebaseService'
 import OakSprite from '../components/OakSprite'
 import PixelButton from '../components/PixelButton'
 
@@ -8,8 +9,9 @@ export default function Welcome() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  function handleStart() {
+  async function handleStart() {
     if (!name.trim()) {
       setError('Please enter your name.')
       return
@@ -18,7 +20,15 @@ export default function Welcome() {
       setError('Please enter a valid email.')
       return
     }
-    navigate('/onboarding', { state: { name: name.trim(), email } })
+    setError('')
+    setLoading(true)
+    try {
+      const userId = await saveUserInfo({ name: name.trim(), email })
+      navigate('/onboarding', { state: { name: name.trim(), email, userId } })
+    } catch (e) {
+      setError('Something went wrong. Try again.')
+      setLoading(false)
+    }
   }
 
   return (
@@ -52,8 +62,8 @@ export default function Welcome() {
           onKeyDown={e => e.key === 'Enter' && handleStart()}
         />
         {error && <p className="error-text">{error}</p>}
-        <PixelButton onClick={handleStart}>
-          Begin ▶
+        <PixelButton onClick={handleStart} disabled={loading}>
+          {loading ? 'Saving...' : 'Begin ▶'}
         </PixelButton>
       </div>
     </div>

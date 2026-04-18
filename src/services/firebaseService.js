@@ -4,17 +4,36 @@ import {
   addDoc,
   doc,
   getDoc,
+  updateDoc,
   serverTimestamp,
 } from 'firebase/firestore'
 
+// Save name + email at signup, before quiz. Returns new userId.
+export async function saveUserInfo({ name, email }) {
+  const ref = await addDoc(collection(db, 'users'), {
+    name,
+    email,
+    createdAt: serverTimestamp(),
+  })
+  return ref.id
+}
+
+// Update an existing user record with their Pokemon type result
+export async function updateUserType({ userId, type, inviterRef }) {
+  const payload = { type }
+  if (inviterRef) payload.inviterRef = inviterRef
+  await updateDoc(doc(db, 'users', userId), payload)
+}
+
 // Save a user's result (email optional, type required)
 // Returns the new document ID (userId)
-export async function saveUserResult({ email, type, inviterRef }) {
+export async function saveUserResult({ email, name, type, inviterRef }) {
   const payload = {
     type,
     createdAt: serverTimestamp(),
   }
   if (email) payload.email = email
+  if (name) payload.name = name
   if (inviterRef) payload.inviterRef = inviterRef
 
   const ref = await addDoc(collection(db, 'users'), payload)
