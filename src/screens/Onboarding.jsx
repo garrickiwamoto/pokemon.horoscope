@@ -5,14 +5,10 @@ import OakSprite from '../components/OakSprite'
 import PixelButton from '../components/PixelButton'
 
 const DIALOGUE = [
-  "Hello there! Welcome to POKéHOROSCOPES!",
-  "My name is OAK. People call me the Pokemon Professor.",
-  "This world is inhabited by creatures called Pokemon...",
-  "...and also by people like you, who are basically just Pokemon with anxiety.",
-  "Today, I will help you discover which Pokemon TYPE you truly are.",
-  "But first — I need to ask you a few questions.",
-  "Don't worry. There are no wrong answers.",
-  "...Actually there might be. Let's find out.",
+  "Hello there Poké Trainer! \n Have you ever wondered if you more like Charmander or Jigglypuff?", 
+  "POKéHOROSCOPES will answer which Pokémon TYPE you are.",
+  "My name is OAK, the Pokemon Professor.\n I will guide you through this discovery.",
+  "First — I need to ask you a few questions.",
 ]
 
 export default function Onboarding() {
