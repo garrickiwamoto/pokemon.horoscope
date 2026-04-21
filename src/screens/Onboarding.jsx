@@ -5,9 +5,9 @@ import OakSprite from '../components/OakSprite'
 import PixelButton from '../components/PixelButton'
 
 const DIALOGUE = [
-  "Hello there Poké Trainer! \n Have you ever wondered if you more like Charmander or Jigglypuff?", 
-  "POKéHOROSCOPES will answer which Pokémon TYPE you are.",
-  "My name is OAK, the Pokemon Professor.\n I will guide you through this discovery.",
+  "Hello there Poké Trainer! \n Have you ever wondered if you are Charmander or Jigglypuff?", 
+  "POKéHOROSCOPES will answer which Pokémon type you are.",
+  "My name is OAK, the Pokemon Professor.\n\n I will guide you through this discovery.",
   "First — I need to ask you a few questions.",
 ]
 
