@@ -4,7 +4,7 @@
 export const questions = [
   {
     id: 1,
-    question: "You're in Pallet Town and just selected your starter Pokémon. What do you do next?",
+    question: "You're in Pallet Town with your newly selected starter Pokémon. What do you do next?",
     answers: [
       { text: "Head straight into the tall grass — growth only comes from challenges.", weights: { fire: 3, water: 0, grass: 0, psychic: 0, electric: 1 } },
       { text: "Study the town's layout and plan the most efficient route first.", weights: { fire: 0, water: 0, grass: 1, psychic: 3, electric: 0 } },
@@ -14,7 +14,7 @@ export const questions = [
   },
   {
     id: 2,
-    question: "Your rival challenges you to a battle right before a big Gym fight. How do you handle it?",
+    question: "Gary , your childhood rival, challenges you to a battle right before a big Gym fight. How do you handle it?",
     answers: [
       { text: "Accept without hesitation — competition brings out the best in us both.", weights: { fire: 3, water: 0, grass: 0, psychic: 0, electric: 1 } },
       { text: "Politely decline; I won't risk my team's energy on drama right now.", weights: { fire: 0, water: 0, grass: 3, psychic: 2, electric: 0 } },
