@@ -9,10 +9,9 @@ import OakSprite from '../components/OakSprite'
 import RelationshipHoroscope from '../components/RelationshipHoroscope'
 
 const OAK_LINES = (type) => [
-  `Well, well, well... I've never seen readings like this.`,
-  `You are... a ${type.toUpperCase()} TYPE.`,
-  `I've studied Pokemon for 40 years and somehow you still surprised me.`,
-  `Read your horoscope carefully. And maybe call your mother.`,
+  `Well, well, well... \n...I've never seen readings like this.`,
+  `You are... a ${type.toUpperCase()} TYPE. \n I have prepared your Pokehoroscope`,
+  
 ]
 
 export default function Results() {
