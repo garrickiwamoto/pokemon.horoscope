@@ -148,7 +148,7 @@ body::before {
 
 .dialog-speaker {
   font-family: var(--font);
-  font-size: 8px;
+  font-size: 12px;
   color: var(--black);
   margin-bottom: 20px;
   letter-spacing: 1px;
@@ -157,7 +157,7 @@ body::before {
 
 .dialog-text {
   font-family: var(--font);
-  font-size: 9px;
+  font-size: 10px;
   color: var(--black);
   line-height: 1.8;
   margin-bottom: 16px;
@@ -222,7 +222,7 @@ body::before {
 }
 
 .progress-text {
-  font-size: 8px;
+  font-size: 10px;
   color: var(--text-dim);
   letter-spacing: 1px;
 }
@@ -236,13 +236,13 @@ body::before {
 
 .progress-bar-fill {
   height: 100%;
-  background: var(--accent);
+  background: #FFF3B0;
   transition: width 0.3s ease;
 }
 
 .quiz-box {
   width: 100%;
-  background: var(--bg-light);
+  background: var(--white);
   border: var(--pixel-border);
   box-shadow: var(--pixel-shadow);
   padding: 20px;
@@ -252,9 +252,9 @@ body::before {
 }
 
 .quiz-question {
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.8;
-  color: var(--text);
+  color: var(--black);
   letter-spacing: 0.5px;
 }
 
@@ -266,7 +266,7 @@ body::before {
 
 .answer-btn {
   font-family: var(--font);
-  font-size: 8px;
+  font-size: 10px;
   background: #0d1b2a;
   color: var(--white);
   border: 2px solid #333;
@@ -301,7 +301,8 @@ body::before {
 
 .quiz-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 8px;
 }
 
@@ -494,7 +495,7 @@ body::before {
 .pixel-input {
   font-family: var(--font);
   font-size: 8px;
-  background: var(--bg-light);
+  background: #808080b6;
   color: var(--white);
   border: 2px solid #444;
   padding: 12px;
@@ -509,7 +510,7 @@ body::before {
 }
 
 .pixel-input::placeholder {
-  color: #555;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .add-email-btn {

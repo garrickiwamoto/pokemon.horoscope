@@ -6,10 +6,10 @@ import PokemonSprite from '../components/PokemonSprite'
 import PixelButton from '../components/PixelButton'
 
 const DIALOGUE = (name) => [
-  `Hello there PokéTrainer ${name}!\n \nHave you ever wondered if...`,
-  "...you are a fire 🔥 or fairy 🧚 type?",
+  `Hello there PokéTrainer ${name}!\n \nHave you ever wondered...`,
+  "...if you are a fire 🔥 or fairy 🧚 type?",
   "POKéHOROSCOPES will answer which Pokémon type you are.",
-  "My name is OAK, the Pokemon Professor.\n\nI will guide you through this discovery.",
+  "I am the Pokemon Professor.\n\nI will guide you through this discovery.",
   "First — I need to ask you a few questions.",
 ]
 

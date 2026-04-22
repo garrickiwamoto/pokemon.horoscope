@@ -35,6 +35,16 @@ export default function Quiz() {
     }
   }
 
+  function handleBack() {
+    if (currentQ === 0) {
+      navigate('/onboarding', { state: { name, email } })
+    } else {
+      setCurrentQ(q => q - 1)
+      setSelectedAnswers(a => a.slice(0, -1))
+      setSelected(selectedAnswers[currentQ - 1] || null)
+    }
+  }
+
   return (
     <div className="screen-container">
       <div className="quiz-header">
@@ -64,8 +74,9 @@ export default function Quiz() {
         </div>
 
         <div className="quiz-footer">
+          <button className="dialog-back-btn" onClick={handleBack}>◀ Back</button>
           <PixelButton onClick={handleNext} disabled={!selected}>
-            {isLast ? 'Reveal My Type ▶' : 'Next ▶'}
+            {isLast ? 'Finish ▶' : 'Next ▶'}
           </PixelButton>
         </div>
       </div>
