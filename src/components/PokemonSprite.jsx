@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { removeWhiteBackground } from '../utils/removeWhiteBackground'
 
-export default function OakSprite({ excited = false }) {
+export default function PokemonSprite({ src, alt, className = '' }) {
   const canvasRef = useRef(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const img = new Image()
-    img.src = '/sprites/profoak.png'
+    img.src = src
     img.onload = () => {
       canvas.width = img.naturalWidth
       canvas.height = img.naturalHeight
@@ -16,18 +16,7 @@ export default function OakSprite({ excited = false }) {
       ctx.drawImage(img, 0, 0)
       removeWhiteBackground(canvas)
     }
-  }, [])
+  }, [src])
 
-  return (
-    <div className={`oak-sprite ${excited ? 'excited' : ''}`}>
-      <div className="oak-pixel-art">
-        <div className="pixel-face">
-          <canvas
-            ref={canvasRef}
-            className={`oak-image ${excited ? 'excited' : ''}`}
-          />
-        </div>
-      </div>
-    </div>
-  )
+  return <canvas ref={canvasRef} className={`oak-image ${className}`} aria-label={alt} />
 }

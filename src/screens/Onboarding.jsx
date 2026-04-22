@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import DialogBox from '../components/DialogBox'
 import OakSprite from '../components/OakSprite'
+import PokemonSprite from '../components/PokemonSprite'
 import PixelButton from '../components/PixelButton'
 
 const DIALOGUE = (name) => [
   `Hello there PokéTrainer ${name}!\n \nHave you ever wondered if...`,
-  "...you are Charmander or Jigglypuff?",
+  "...you are a fire 🔥 or fairy 🧚 type?",
   "POKéHOROSCOPES will answer which Pokémon type you are.",
   "My name is OAK, the Pokemon Professor.\n\nI will guide you through this discovery.",
   "First — I need to ask you a few questions.",
@@ -35,10 +36,28 @@ export default function Onboarding() {
     }
   }
 
+  const showPokemon = dialogIndex === 1
+  const [showCharmander, setShowCharmander] = useState(true)
+
+  useEffect(() => {
+    if (!showPokemon) return
+    const interval = setInterval(() => setShowCharmander(v => !v), 2000)
+    return () => clearInterval(interval)
+  }, [showPokemon])
+
   return (
     <div className="screen-container">
       <div className="oak-scene">
-        <OakSprite />
+        {showPokemon ? (
+          <div className="pokemon-pair">
+            {showCharmander
+              ? <PokemonSprite src="/sprites/charmander.png" alt="Charmander" />
+              : <PokemonSprite src="/sprites/fairy.png" alt="Jigglypuff" />
+            }
+          </div>
+        ) : (
+          <OakSprite />
+        )}
       </div>
       <DialogBox
         speaker="Prof. Oak"

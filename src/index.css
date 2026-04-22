@@ -77,6 +77,13 @@ body::before {
   padding-top: 8px;
 }
 
+.pokemon-pair {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 16px;
+}
+
 .oak-sprite {
   display: flex;
   flex-direction: column;
