@@ -1,11 +1,18 @@
-export default function DialogBox({ speaker, text, onNext, buttonLabel = 'Next ▶' }) {
+export default function DialogBox({ speaker, text, onNext, onBack, buttonLabel = 'Next ▶' }) {
   return (
     <div className="dialog-box">
       {speaker && <p className="dialog-speaker">{speaker}</p>}
       <p className="dialog-text">{text}</p>
-      <button className="dialog-btn" onClick={onNext}>
-        {buttonLabel}
-      </button>
+      <div className="dialog-actions">
+        {onBack && (
+          <button className="dialog-back-btn" onClick={onBack}>
+            ◀ Back
+          </button>
+        )}
+        <button className="dialog-btn" onClick={onNext}>
+          {buttonLabel}
+        </button>
+      </div>
     </div>
   )
 }
