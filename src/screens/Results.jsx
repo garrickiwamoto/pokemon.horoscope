@@ -32,9 +32,11 @@ export default function Results() {
   const email = state?.email || null
   const horoscope = personalHoroscopes[type]
 
-  const [phase, setPhase] = useState('oak') // 'oak' | 'reveal' | 'horoscope' | 'relationship'
+  const [phase, setPhase] = useState('oak')
   const [oakIndex, setOakIndex] = useState(0)
   const oakLines = OAK_LINES(type)
+  const horoscopePages = horoscope.horoscope.split('\n\n').filter(p => p.trim())
+  const [horoIndex, setHoroIndex] = useState(0)
 
   // If this is a friend completing via invite, save their result and notify inviter
   useEffect(() => {
@@ -87,42 +89,38 @@ export default function Results() {
   }
 
   if (phase === 'horoscope') {
+    const isLastPage = horoIndex === horoscopePages.length - 1
     return (
-      <div className="screen-container horoscope-screen">
-        <div className="horoscope-header">
+      <div className="screen-container">
+        <div className="oak-scene">
           <PokemonSprite src={TYPE_SPRITE[type]} alt={type} />
+        </div>
+        <div className="horoscope-header">
           <TypeBadge type={type} horoscope={horoscope} />
-          <h2 className="horoscope-title">Your Pokemon Horoscope</h2>
         </div>
-        <div className="horoscope-scroll">
-          <pre className="horoscope-text">{horoscope.horoscope}</pre>
+        <div className="dialog-box">
+          <p className="dialog-text">{horoscopePages[horoIndex]}</p>
+          <div className="dialog-actions">
+            {horoIndex > 0 && (
+              <button className="dialog-back-btn" onClick={() => setHoroIndex(i => i - 1)}>◀ Back</button>
+            )}
+            {!isLastPage ? (
+              <button className="dialog-btn" onClick={() => setHoroIndex(i => i + 1)}>Next ▶</button>
+            ) : (
+              <button className="dialog-btn" onClick={() => {
+                if (inviterType) setPhase('relationship')
+                else navigate('/invite', { state: { type, name, email } })
+              }}>
+                {inviterType ? 'See Compatibility ▶' : 'Invite a Friend ▶'}
+              </button>
+            )}
+          </div>
         </div>
-        <div className="horoscope-cta">
-          {inviterType ? (
-            <>
-              <p className="oak-prompt">— Prof. Oak —</p>
-              <p className="oak-cta-text">
-                And now... shall we see what the stars say about you and your friend?
-              </p>
-              <PixelButton onClick={() => setPhase('relationship')}>
-                See Compatibility ▶
-              </PixelButton>
-            </>
-          ) : (
-            <>
-              <p className="oak-prompt">— Prof. Oak —</p>
-              <p className="oak-cta-text">
-                Want to discover your compatibility horoscope with a friend?
-              </p>
-              <PixelButton onClick={() => navigate('/invite', { state: { type, name, email } })}>
-                Invite a Friend ▶
-              </PixelButton>
-            </>
-          )}
+        {isLastPage && (
           <button className="skip-link" onClick={() => navigate('/')}>
             {inviterType ? 'Skip for now' : 'No thanks, restart'}
           </button>
-        </div>
+        )}
       </div>
     )
   }
