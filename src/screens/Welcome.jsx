@@ -40,7 +40,7 @@ export default function Welcome() {
         <p className="dialog-speaker">Prof. Oak</p>
         <p className="dialog-text">
           Welcome to POKéHOROSCOPES! <br /> <br />
-          Before we begin, I'll need your Trainer info for the Pokédex.
+          Before we begin, I need your info for the Pokédex.
         </p>
       </div>
       <div className="invite-form">

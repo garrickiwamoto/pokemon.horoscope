@@ -7,7 +7,7 @@ import PixelButton from '../components/PixelButton'
 
 const DIALOGUE = (name) => [
   `Hello there PokéTrainer ${name}!\n \nHave you ever wondered...`,
-  "...if you are a fire 🔥 or fairy 🧚 type?",
+  <>...if you are a <span style={{ fontSize: '24px' }}>🔥</span> fire or <span style={{ fontSize: '24px' }}>🧚</span> fairy type?</>,
   "POKéHOROSCOPES will answer which Pokémon type you are.",
   "I am the Pokemon Professor.\n\nI will guide you through this discovery.",
   "First — I need to ask you a few questions.",
