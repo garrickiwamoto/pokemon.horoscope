@@ -6,12 +6,20 @@ import TypeBadge from '../components/TypeBadge'
 import PixelButton from '../components/PixelButton'
 import DialogBox from '../components/DialogBox'
 import OakSprite from '../components/OakSprite'
+import PokemonSprite from '../components/PokemonSprite'
 import RelationshipHoroscope from '../components/RelationshipHoroscope'
 
+const TYPE_SPRITE = {
+  fire: '/sprites/fire.png',
+  water: '/sprites/water.png',
+  grass: '/sprites/grass.png',
+  psychic: '/sprites/psychic.png',
+  electric: '/sprites/electric.png',
+}
+
 const OAK_LINES = (type) => [
-  `Well, well, well... \n...I've never seen readings like this.`,
-  `You are... a ${type.toUpperCase()} TYPE. \n I have prepared your Pokehoroscope`,
-  
+  `Well, well, well...I have never seen POKéHOROSCOPES like this.`,
+  `You are... a ${type.toUpperCase()} TYPE.\n\nI have prepared your Pokehoroscope`,
 ]
 
 export default function Results() {
@@ -40,7 +48,7 @@ export default function Results() {
     if (oakIndex < oakLines.length - 1) {
       setOakIndex(i => i + 1)
     } else {
-      setPhase('reveal')
+      setPhase('horoscope')
     }
   }
 
@@ -48,7 +56,10 @@ export default function Results() {
     return (
       <div className="screen-container">
         <div className="oak-scene">
-          <OakSprite excited />
+          {oakIndex === oakLines.length - 1
+            ? <PokemonSprite src={TYPE_SPRITE[type]} alt={type} />
+            : <OakSprite />
+          }
         </div>
         <DialogBox
           speaker="Prof. Oak"
@@ -79,6 +90,7 @@ export default function Results() {
     return (
       <div className="screen-container horoscope-screen">
         <div className="horoscope-header">
+          <PokemonSprite src={TYPE_SPRITE[type]} alt={type} />
           <TypeBadge type={type} horoscope={horoscope} />
           <h2 className="horoscope-title">Your Pokemon Horoscope</h2>
         </div>

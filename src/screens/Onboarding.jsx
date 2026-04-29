@@ -41,6 +41,7 @@ export default function Onboarding() {
 
   useEffect(() => {
     if (!showPokemon) return
+    setShowCharmander(true)
     const interval = setInterval(() => setShowCharmander(v => !v), 2000)
     return () => clearInterval(interval)
   }, [showPokemon])

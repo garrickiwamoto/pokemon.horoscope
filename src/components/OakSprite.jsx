@@ -1,30 +1,14 @@
-import { useEffect, useRef } from 'react'
-import { removeWhiteBackground } from '../utils/removeWhiteBackground'
+import PokemonSprite from './PokemonSprite'
 
 export default function OakSprite({ excited = false }) {
-  const canvasRef = useRef(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const img = new Image()
-    img.src = '/sprites/profoak.png'
-    img.onload = () => {
-      canvas.width = img.naturalWidth
-      canvas.height = img.naturalHeight
-      const ctx = canvas.getContext('2d')
-      ctx.drawImage(img, 0, 0)
-      removeWhiteBackground(canvas)
-    }
-  }, [])
-
   return (
     <div className={`oak-sprite ${excited ? 'excited' : ''}`}>
       <div className="oak-pixel-art">
         <div className="pixel-face">
-          <canvas
-            ref={canvasRef}
-            className={`oak-image ${excited ? 'excited' : ''}`}
+          <PokemonSprite
+            src="/sprites/profoak.png"
+            alt="Professor Oak"
+            className={excited ? 'excited' : ''}
           />
         </div>
       </div>
