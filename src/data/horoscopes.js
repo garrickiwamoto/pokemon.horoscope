@@ -7,7 +7,7 @@ export const personalHoroscopes = {
     color: '#FF6B35',
     secondaryColor: '#FF4500',
     tagline: 'You are a walking red flag and people love you for it.',
-    horoscope: `You raging dumpster fire. You are a 🔥 FIRE TYPE.
+    horoscope: `You raging dumpster fire. \n \n You are a 🔥 FIRE TYPE.
 
 The stars have spoken, and they are mildly afraid of you.
 
@@ -30,7 +30,7 @@ Professor Oak's notes: "This one set my lab on fire. Twice. I gave them an A."`,
     color: '#4A90D9',
     secondaryColor: '#2171B5',
     tagline: 'Emotionally deep. Possibly too deep. Are you okay?',
-    horoscope: `Squirt. Squirt. A 💧WATER TYPE. How refreshingly predictable.
+    horoscope: `Squirt. Squirt. \n \nA 💧WATER TYPE. How refreshingly predictable.
 
 You are a vast ocean of feelings and your friends are exhausted.
 
@@ -53,7 +53,7 @@ Professor Oak's notes: "Incredibly empathetic. Cried when I told them Pokémon d
     color: '#4CAF50',
     secondaryColor: '#2E7D32',
     tagline: 'You are a plant parent who is also, spiritually, a plant.',
-    horoscope: `Take a deep breath. You are a GRASS TYPE. The most patient and most quietly unhinged of all.
+    horoscope: `Take a deep breath. \n \nYou are a GRASS TYPE. The most patient and most quietly unhinged of all.
 
 You are the person who remembers everyone's birthday, keeps a succulent alive for seven years, and then has a complete existential breakdown at a farmer's market.
 
@@ -76,7 +76,7 @@ Professor Oak's notes: "Brought me homemade soup when I had a cold. I don't dese
     color: '#9C27B0',
     secondaryColor: '#6A1B9A',
     tagline: 'You know things. Unsettling things. Please stop.',
-    horoscope: `Ah. You already knew you were a PSYCHIC TYPE.
+    horoscope: `Know it all. \n \n You already knew you were a PSYCHIC TYPE.
 
 Of course you did. You've been watching people too carefully for too long.
 
@@ -99,7 +99,7 @@ Professor Oak's notes: "Told me what I was going to say before I said it. I have
     color: '#FFD700',
     secondaryColor: '#FFA500',
     tagline: 'ADHD or destiny? The stars say: yes.',
-    horoscope: `Piiikkkaa! You are an ELECTRIC TYPE! Which you probably already forgot since you can't stand still!
+    horoscope: `Piiikkkaa! \n \n You are an ELECTRIC TYPE! Which you probably already forgot since you can't stand still!
 
 Welcome back.
 
