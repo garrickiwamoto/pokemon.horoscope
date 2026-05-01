@@ -19,7 +19,6 @@ const TYPE_SPRITE = {
 
 const OAK_LINES = (type) => [
   `Well, well, well...I have never seen POKéHOROSCOPES like this.`,
-  `You are... a ${type.toUpperCase()} TYPE.\n\nI have prepared your Pokehoroscope`,
 ]
 
 export default function Results() {
@@ -58,10 +57,7 @@ export default function Results() {
     return (
       <div className="screen-container">
         <div className="oak-scene">
-          {oakIndex === oakLines.length - 1
-            ? <PokemonSprite src={TYPE_SPRITE[type]} alt={type} />
-            : <OakSprite />
-          }
+          <OakSprite />
         </div>
         <DialogBox
           speaker="Prof. Oak"
@@ -94,9 +90,6 @@ export default function Results() {
       <div className="screen-container">
         <div className="oak-scene">
           <PokemonSprite src={TYPE_SPRITE[type]} alt={type} />
-        </div>
-        <div className="horoscope-header">
-          <TypeBadge type={type} horoscope={horoscope} />
         </div>
         <div className="dialog-box">
           <p className="dialog-text">{horoscopePages[horoIndex]}</p>
