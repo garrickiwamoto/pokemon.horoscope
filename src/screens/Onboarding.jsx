@@ -52,7 +52,7 @@ export default function Onboarding() {
         {showPokemon ? (
           <div className="pokemon-pair">
             {showCharmander
-              ? <PokemonSprite src="/sprites/charmander.png" alt="Charmander" />
+              ? <PokemonSprite src="/sprites/fire.png" alt="Fire" />
               : <PokemonSprite src="/sprites/fairy.png" alt="Jigglypuff" />
             }
           </div>
